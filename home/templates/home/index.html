@@ -1,0 +1,20 @@
+{% extends 'home/base.html' %}
+
+{% block title %}YouTube MP3{% endblock %}
+{% block styles %}{% endblock %}
+{% block body %}
+<div class="position-absolute top-50 start-50 translate-middle text-center">
+    <h1>Veuillez entrer la vidéo voulue</h1>
+    <form class='form-control' method="post">
+        {% csrf_token %}
+        URL de la vidéo: {{ form.recherche }}<br><br>
+        <a class="btn btn-outline-secondary btn-sm" data-bs-toggle="collapse" href="#rogner" role="button" aria-expanded="false" aria-controls="rogner">
+            Rogner la vidéo
+        </a><br><br>
+        <div class="collapse" id="rogner">
+            Début: {{ form.debut }} Fin: {{ form.fin }}<br><br>
+        </div>
+        <button class="btn btn-primary mb-2 btn-lg" type="submit">Rechercher</button>
+    </form>
+</div>
+{% endblock %}

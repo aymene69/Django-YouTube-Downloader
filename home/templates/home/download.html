@@ -1,0 +1,16 @@
+{% extends 'home/base.html' %}
+
+{% block title %}DeezerDL{% endblock %}
+{% block styles %}{% endblock %}
+{% block body %}
+<div class="position-absolute top-50 start-50 translate-middle text-center">
+    <h1>Votre fichier est prêt !</h1>
+    <audio controls>
+        <source src="../media/{{ nom }}">
+    </audio>
+    <br>
+    <a href="../media/{{ nom }}" class="btn btn-danger mb-2 btn-lg">Télécharger</a>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,44 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+from .forms import RechercheDeezer
+from pydeezer import Deezer
+from pydeezer.constants import track_formats
+
+def index(request):
+    if request.method == "POST":
+        form = RechercheDeezer(request.POST)
+        if form.is_valid():
+            recherche = form.cleaned_data['recherche']
+            arl = 'de679d078eb5b63e4cd845e2944c569e78cae4a0bbe84588ba8635d780d65c4df6db608027d30fa255986e6ec09de5cde2cb7d4518fc156c17e393b2a021b04f76530b410dbe871a83982208a17f29b62a55c16dd72feaa2f8e88009c8f525ca'
+
+            deezer = Deezer(arl=arl)
+            track_search_results = deezer.search_tracks(recherche)
+            choix = 1
+            titreL = [None] * len(track_search_results)
+            artisteL = [None] * len(track_search_results)
+            albumL = [None] * len(track_search_results)
+            imageL = [None] * len(track_search_results)
+            rang = [None] * len(track_search_results)
+            for elem in track_search_results:
+                titreL[int(choix-1)] = elem['title']
+                artisteL[int(choix-1)] = elem['artist']['name']
+                albumL[int(choix-1)] = elem['album']['title']
+                imageL[int(choix-1)] = elem['album']['cover']
+                rang[int(choix-1)] = str(choix)
+                choix = int(choix) + 1
+            afficher = True
+            liste = zip(titreL, artisteL, albumL, imageL, rang)
+
+
+    form = RechercheDeezer()
+    try:
+        if afficher == True:
+            return render(request, 'home/resultats.html', {'titreL': titreL, 'artisteL': artisteL, 'albumL': albumL, 'imageL': imageL, 'choix': choix, 'recherche': recherche, 'liste': liste})
+    except:
+        return render(request, 'home/index.html', {'form': form})
+
+def dl(request, numero):
+    return render(request, 'home/index.html')
+
+def dlfinished(request, numero):
+    return render(request, 'home/resultats.html')

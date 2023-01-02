@@ -1,0 +1,15 @@
+{% extends 'home/base.html' %}
+
+{% block title %}YouTube MP3{% endblock %}
+{% block styles %}{% endblock %}
+{% block body %}
+<div class="position-absolute top-50 start-50 translate-middle text-center">
+    <h1>Votre fichier est prêt !</h1>
+    <br>
+    <img class="img-thumbnail" src="{{ image }}">
+    <p> {{ titre }} de {{ autheur }} </p>
+    <a href="../media/{{ filename2 }}" class="btn btn-danger mb-2 btn-lg">Télécharger {{ titre }} de {{ autheur }}</a>
+</div>
+{% endblock %}
+
+
