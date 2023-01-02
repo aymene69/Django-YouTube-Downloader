@@ -23,7 +23,6 @@ def audio(request):
             filename2 = titre.replace('#', '')
             os.system("ffmpeg -i 'media/" + filename + "' 'media/" + filename2 + ".mp3' -y")
             filename2 = filename2 + ".mp3"
-            print(filename2)
 
     form = RechercheDeezer()
     try:
@@ -56,10 +55,7 @@ def video(request):
                 except:
                     return render(request, 'home/erreur.html')
             else:
-                heure = datetime.datetime.strptime(debut, "%H:%M:%S")
-                heure = heure.strftime('%M:%H:%S')
-                heure = datetime.datetime.strptime(fin, "%H:%M:%S")
-                heure = heure.strftime('%M:%H:%S')
+                heure = datetime.datetime.strptime(debut, "%H:%M:%S").strftime('%M:%H:%S').datetime.datetime.strptime(fin, "%H:%M:%S").strftime('%M:%H:%S')
                 yt = YouTube(recherche)
                 titre = yt.title
                 image = yt.thumbnail_url
