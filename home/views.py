@@ -23,6 +23,7 @@ def audio(request):
             filename2 = titre.replace('#', '')
             os.system("ffmpeg -i 'media/" + filename + "' 'media/" + filename2 + ".mp3' -y")
             filename2 = filename2 + ".mp3"
+            print(filename2)
 
     form = RechercheDeezer()
     try:
